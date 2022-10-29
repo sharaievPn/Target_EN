@@ -7,7 +7,9 @@ def generate_grid() -> List[List[str]]:
     Generates list of lists of letters - i.e. grid for the game.
     e.g. [['I', 'G', 'E'], ['P', 'I', 'S'], ['W', 'M', 'G']]
     """
-    board = [random.choices(string.ascii_lowercase, k=9)]
+    board = []
+    for i in range(3):
+        board.append(random.choices(string.ascii_uppercase, k=3))
     return board
 
 def get_words(f: str, letters: List[str]) -> List[str]:
