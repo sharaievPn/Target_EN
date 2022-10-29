@@ -2,21 +2,24 @@ from typing import List
 import string
 import random
 
-def generate_grid() -> List[List[str]]:
+def generate_grid() -> List[str]:
     """
     Generates list of lists of letters - i.e. grid for the game.
     e.g. [['I', 'G', 'E'], ['P', 'I', 'S'], ['W', 'M', 'G']]
     """
-    board = []
-    for i in range(3):
-        board.append(random.choices(string.ascii_uppercase, k=3))
+    board = random.choices(string.ascii_lowercase, k=9)
     return board
 
 def get_words(f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
-    pass
+    acceptable_words = []
+    with open(f, 'r') as file:
+        file = file.read().lower()
+        dictionary = file.split('\n')
+    for word in dictionary:
+        if
 
 
 
