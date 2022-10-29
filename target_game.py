@@ -85,12 +85,13 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     for word in user_words:
         try:
             if words_from_dict.index(word) >= 0:
-                correct_words.append(user_words)
+                correct_words.append(word)
                 user_words.remove(word)
         except:
             user_words.remove(word)
 
     return correct_words
+
 
 def results():
     pass
