@@ -19,7 +19,7 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     acceptable_words = []
     with open(f, 'r') as file:
         file = file.read().lower()
-        dictionary = file.split('\n')
+        dictionary = file.split('\n')[2:]
     tuples = []
     central_letter = letters[4]
     while len(letters) != 0:
@@ -56,16 +56,23 @@ def get_user_words() -> List[str]:
     Note: the user presses the enter key after entering each word.
     """
     # stop with key combination 'cmd+d' ('ctrl+d' if ran in terminal)
+    word = ''
     running = True
     user_words = []
     while running:
         try:
             word = input()
-            user_words.append(word)
         except:
             running = False
 
+        try:
+            if user_words.index(word) >= 0:
+                continue
+        except:
+            user_words.append(word)
+
     return user_words
+
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
@@ -74,8 +81,16 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     Checks user words with the rules and returns list of those words
     that are not in dictionary.
     """
-    pass
+    correct_words, no_such_word = [], []
+    for word in user_words:
+        try:
+            if words_from_dict.index(word) >= 0:
+                correct_words.append(user_words)
+                user_words.remove(word)
+        except:
+            user_words.remove(word)
 
+    return correct_words
 
 def results():
     pass
