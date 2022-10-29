@@ -48,17 +48,24 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     return acceptable_words
 
 
-
-
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
-    Usage: enter a word or press ctrl+d to finish for *nix or Ctrl-Z+Enter
+    Usage: press ctrl+d to finish for *nix or Ctrl-Z+Enter
     for Windows.
     Note: the user presses the enter key after entering each word.
     """
-    pass
+    # stop with key combination 'cmd+d' ('ctrl+d' if ran in terminal)
+    running = True
+    user_words = []
+    while running:
+        try:
+            word = input()
+            user_words.append(word)
+        except:
+            running = False
 
+    return user_words
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
