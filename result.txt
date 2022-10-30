@@ -1,0 +1,5 @@
+1
+['aft', 'baff', 'baft', 'f', 'fa', 'faff', 'fat']
+['aft', 'baff', 'baft', 'f', 'fa', 'faff']
+['bat', 'fat']
+['bat']

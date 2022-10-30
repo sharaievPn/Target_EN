@@ -66,6 +66,7 @@ def get_user_words() -> List[str]:
     user_words = []
     while running:
         try:
+            print('Enter the word: ')
             word = input()
         except:
             running = False
@@ -87,20 +88,36 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     (list, list, list) -> list
 
     Checks user words with the rules and returns list of those words
-    that are not in dictionary.
+    that are not in dictionary of the game.
     """
-    correct_words, no_such_word = [], []
+    correct_words, no_such_words = [], []
     for word in user_words:
         try:
             if words_from_dict.index(word) >= 0:
                 correct_words.append(word)
-                user_words.remove(word)
         except:
-            no_such_word.append(word)
-            user_words.remove(word)
+            no_such_words.append(word)
 
-    return no_such_word
+    return no_such_words, correct_words
 
 
 def results():
-    pass
+    board = generate_grid()
+    print(board)
+    user_words = get_user_words()
+    possible_combinations = get_words('dictionary.txt', board)
+    checked_words = get_pure_user_words(user_words, board, possible_combinations)
+    with open('result.txt', 'w') as file:
+        print(len(checked_words[1]))
+        file.write(str(len(checked_words[1])) + '\n')
+        print(possible_combinations)
+        file.write(str(possible_combinations) + '\n')
+        for word in checked_words[1]:
+            possible_combinations.remove(word)
+        print(possible_combinations)
+        file.write(str(possible_combinations) + '\n')
+        print(user_words)
+        file.write(str(user_words) + '\n')
+        print(checked_words[0])
+        file.write(str(checked_words[0]))
+        file.close()
